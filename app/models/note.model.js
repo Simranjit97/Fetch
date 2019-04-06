@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const SurveySchema = mongoose.Schema({
     userId: String,
-    surveyId: String,
+    questionId: String,
     optionSelected: String
 }, {
     timestamps: true
