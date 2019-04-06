@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 // Using Static files for UI
-// app.use('/', express.static('public'));
+app.use('/', express.static('public'));
 
 // Configuring the database
 const dbConfig = require('./config/database.config.js');
