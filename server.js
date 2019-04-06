@@ -36,6 +36,6 @@ require('./app/routes/questions.routes.js')(app);
 
 
 // listen for requests
-app.listen(80, () => {
-    console.log("Server is listening on port 80");
+app.listen(8081, () => {
+    console.log("Server is listening on port 8081");
 });
