@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 
-const NoteSchema = mongoose.Schema({
-    title: String,
-    content: String
+const SurveySchema = mongoose.Schema({
+    userId: String,
+    surveyId: String,
+    optionSelected: String
 }, {
     timestamps: true
 });
 
-module.exports = mongoose.model('Note', NoteSchema);
+module.exports = mongoose.model('Survey', SurveySchema);

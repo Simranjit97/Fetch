@@ -10,6 +10,9 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // parse application/json
 app.use(bodyParser.json())
 
+// Using Static files for UI
+app.use('/', express.static('public'));
+
 // Configuring the database
 const dbConfig = require('./config/database.config.js');
 const mongoose = require('mongoose');
@@ -26,12 +29,11 @@ mongoose.connect(dbConfig.url, {
     process.exit();
 });
 
-// define a simple route
-app.get('/', (req, res) => {
-    res.json({"message": "Welcome to EasyNotes application. Take notes quickly. Organize and keep track of all your notes."});
-});
 
 require('./app/routes/note.routes.js')(app);
+require('./app/routes/login.routes.js')(app);
+require('./app/routes/questions.routes.js')(app);
+
 
 // listen for requests
 app.listen(3000, () => {
