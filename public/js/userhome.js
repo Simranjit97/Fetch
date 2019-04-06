@@ -1,14 +1,16 @@
 $(document).ready(function() {
   $.ajax({
-    url: "/questions/" + localStorage.getItem('userName'),
+    url: "/questions/" + localStorage.getItem("userName"),
     async: false,
     success: function(result) {
       //$("div").html(result);
       console.log(result);
-      if(result.length > 0){
+      if (result.length > 0) {
         result.forEach(question => {
-          $('#questions').append(
-            `<div class="card addMargin">
+          $("#questions").append(
+            `<div class="card addMargin" onclick={openQuestion('${
+              question._id
+            }')}>
               <div class="card-body">
               <h5 class="card-title">${question.question}</h5>
               <p class="card-text">${question.option1}</p>
@@ -17,12 +19,12 @@ $(document).ready(function() {
               <p class="card-text">${question.option4}</p>
             </div>
           </div>`
-          );  
+          );
         });
       }
     },
-    error: function(e){
-      $('#questions').append(`
+    error: function(e) {
+      $("#questions").append(`
         <div class="card addMargin">
               <div class="card-body">
               <h5 class="card-title">User has no questions</h5>
@@ -36,11 +38,14 @@ $(document).ready(function() {
     $(location).attr("href", "/");
   }
 
-  $("#logout").click(function(){
+  $("#logout").click(function() {
     localStorage.clear();
     $(location).attr("href", "/");
   });
 
+  $("#survey").click(function() {
+    $(location).attr("href", "/survey.html");
+  });
 
   $("input").blur(function() {
     var $this = $(this);
@@ -78,13 +83,12 @@ $(document).ready(function() {
     // get the form data
     // there are many ways to get this data using jQuery (you can use the class or id also)
     var formData = {
-      userId: localStorage.getItem('userName'),
+      userId: localStorage.getItem("userName"),
       question: $("input[name=question]").val(),
       option1: $("input[name=op1]").val(),
       option2: $("input[name=op2]").val(),
       option3: $("input[name=op3]").val(),
       option4: $("input[name=op4]").val()
-
     };
 
     // process the form
@@ -97,14 +101,31 @@ $(document).ready(function() {
     })
       // using the done promise callback
       .done(function(data) {
-        // log data to the console so we can see
-        //localStorage.setItem("userName", data._id);
-        //console.log(localStorage.getItem("userName"));
         window.location.replace("/userhome.html");
-        // here we will handle errors and validation messages
       });
 
     // stop the form from submitting the normal way and refreshing the page
     event.preventDefault();
   });
 });
+
+function openQuestion(id) {
+  //alert("results/" + id);
+
+  // process the form
+  $.ajax({
+    type: "GET", // define the type of HTTP verb we want to use (POST for our form)
+    url: "results/" + id, // the url where we want to POST
+    dataType: "json", // what type of data do we expect back from the server
+    encode: true
+  })
+    // using the done promise callback
+    .done(function(data) {
+      console.log(data);
+      alert("We have received " + data.count)
+      //window.location.replace("/userhome.html");
+    });
+
+  // stop the form from submitting the normal way and refreshing the page
+  event.preventDefault();
+}

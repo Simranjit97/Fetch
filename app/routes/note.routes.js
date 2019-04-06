@@ -10,6 +10,9 @@ module.exports = app => {
   // Retrieve a single Note with surveyId
   app.get("/surveys/:surveyId", surveys.findOne);
 
+  // Retrieve count of all Suveys with surveyId
+  app.get("/results/:questionId", surveys.countByQuestion);
+
   // Update a Note with surveyId
   app.put("/surveys/:surveyId", surveys.update);
 

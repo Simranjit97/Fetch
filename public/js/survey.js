@@ -39,10 +39,18 @@ $(document).ready(function() {
             `
           );
         });
+      }else{
+        $("#survey").append(`
+        <div class="card addMargin">
+              <div class="card-body">
+              <h5 class="card-title">No User has posted any questions, please login to add questions</h5>
+            </div>
+          </div>
+        `);
       }
     },
     error: function(e) {
-      $("#questions").append(`
+      $("#survey").append(`
         <div class="card addMargin">
               <div class="card-body">
               <h5 class="card-title">No User has posted any questions, please login to add questions</h5>
@@ -53,13 +61,19 @@ $(document).ready(function() {
   });
 
   if (!localStorage.getItem("userName")) {
-    $(location).attr("href", "/");
+    $("#logout").text("Login");
   }
 
   $("#logout").click(function() {
     localStorage.clear();
     $(location).attr("href", "/");
+    //console.log($("#logout").text());
   });
+
+  $("#home").click(function() {
+    $(location).attr("href", "/");
+  });
+
 
   $("input").blur(function() {
     var $this = $(this);
@@ -109,15 +123,18 @@ $(document).ready(function() {
 
 function vote(e) {
   if($("#"+ e).val() == 'Choose...'){
-    alert('Please choose your answer.')
+    alert('Please choose your answer.');
+    event.preventDefault();
   }
       // there are many ways to get this data using jQuery (you can use the class or id also)
       var formData = {
         userId: localStorage.getItem("userName"),
-        question: e,
+        questionId: e,
         optionSelected: $("#"+ e).val()
       };
-  
+      
+      console.log(formData);
+
       // process the form
       $.ajax({
         type: "POST", // define the type of HTTP verb we want to use (POST for our form)

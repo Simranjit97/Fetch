@@ -12,7 +12,7 @@ exports.create = (req, res) => {
   // Create a Survey
   const survey = new Survey({
     userId: req.body.userId,
-    surveyId: req.body.surveyId,
+    questionId: req.body.questionId,
     optionSelected: req.body.optionSelected
   });
 
@@ -56,6 +56,28 @@ exports.findOne = (req, res) => {
       res.send(survey);
     })
     .catch(err => {
+      if (err.kind === "ObjectId") {
+        return res.status(404).send({
+          message: "Survey not found with id " + req.params.surveyId
+        });
+      }
+      return res.status(500).send({
+        message: "Error retrieving survey with id " + req.params.surveyId
+      });
+    });
+};
+
+// Find a single survey with a surveyId
+exports.countByQuestion = (req, res) => {
+  // console.log(req.params);
+  Survey.find({"questionId": req.params.questionId})
+    .count(function(e, count){
+      // console.log(count);
+      // console.log(e)
+      res.send({ "count": count });
+    })
+    .catch(err => {
+      //console.log(err);
       if (err.kind === "ObjectId") {
         return res.status(404).send({
           message: "Survey not found with id " + req.params.surveyId
