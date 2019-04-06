@@ -1,6 +1,6 @@
 $(document).ready(function() {
   if (localStorage.getItem("userName")) {
-    $(location).attr("href", "/userhome.html");
+//    $(location).attr("href", "/userhome.html");
   }
 
   $("input").blur(function() {
@@ -34,23 +34,20 @@ $(document).ready(function() {
     }
   );
 
-  $("#register").click(function(){
-    $(location).attr("href", "/signup.html");
-  });
-
   // process the form
   $("form").submit(function(event) {
     // get the form data
     // there are many ways to get this data using jQuery (you can use the class or id also)
     var formData = {
       userName: $("input[name=userName]").val(),
-      password: $("input[name=password]").val()
+      password: $("input[name=password]").val(),
+      email: $("input[name=email]").val()
     };
 
     // process the form
     $.ajax({
       type: "POST", // define the type of HTTP verb we want to use (POST for our form)
-      url: "login", // the url where we want to POST
+      url: "signup", // the url where we want to POST
       data: formData, // our data object
       dataType: "json", // what type of data do we expect back from the server
       encode: true
@@ -62,9 +59,6 @@ $(document).ready(function() {
         console.log(localStorage.getItem("userName"));
         window.location.replace("/userhome.html");
         // here we will handle errors and validation messages
-      })
-      .error(function(e){
-        alert("Username or password incorrect");
       });
 
     // stop the form from submitting the normal way and refreshing the page

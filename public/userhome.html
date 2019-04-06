@@ -4,75 +4,75 @@
     <meta charset="UTF-8" />
     <title>Home</title>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+      integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
   <body>
-    <form class="questionform">
-      <div class="group">
-        <input type="text" name="question" id="question" /><span
-          class="highlight"
-        ></span
-        ><span class="bar"></span>
-        <label>Question</label>
-      </div>
-      <div class="group">
-        <input type="text" name="o1" id="o1" /><span class="highlight"></span
-        ><span class="bar"></span>
-        <label>Option 1</label>
-      </div>
-      <div class="group">
-        <input type="text" name="o2" id="o2" /><span class="highlight"></span
-        ><span class="bar"></span>
-        <label>Option 2</label>
-      </div>
-      <div class="group">
-        <input type="text" name="o3" id="o3" /><span class="highlight"></span
-        ><span class="bar"></span>
-        <label>Option 3</label>
-      </div>
-      <div class="group">
-        <input type="text" name="o4" id="o4" /><span class="highlight"></span
-        ><span class="bar"></span>
-        <label>Option 4</label>
-      </div>
-      <button type="submit" class="button buttonBlue">
-        Create
-        <div class="ripples buttonRipples">
-          <span class="ripplesCircle"></span>
-        </div>
-      </button>
-    </form>
-    
-    <div class="card-group">
-        <div class="card">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-          </div>
-        </div>
-        <div class="card">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-          </div>
-        </div>
-        <div class="card">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-          </div>
-        </div>
-      </div>
+    <nav class="navbar navbar-light bg-light">
+      <form class="form-inline">
+        <input
+          class="form-control mr-sm-2"
+          type="search"
+          name="question"
+          placeholder="Question"
+          aria-label="Question"
+        />
+        <input
+          class="form-control mr-sm-2"
+          type="search"
+          name="op1"
+          placeholder="Option 1"
+          aria-label="Option 1"
+        />
+        <input
+          class="form-control mr-sm-2"
+          type="search"
+          name="op2"
+          placeholder="Option 2"
+          aria-label="Option 2"
+        />
+        <input
+          class="form-control mr-sm-2"
+          type="search"
+          name="op3"
+          placeholder="Option 3"
+          aria-label="Option 3"
+        />
+        <input
+          class="form-control mr-sm-2"
+          type="search"
+          name="op4"
+          placeholder="Option 4"
+          aria-label="Option 4"
+        />
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+          Add Question
+        </button>
+        <button class="btn btn-outline-warning my-2 my-sm-0" type="button" id="logout">
+          Logout
+        </button>
+      </form>
+    </nav>
+
+    <div class="card-group addMargin">
+      <div id="questions" class="card addMargin"></div>
+    </div>
 
     <footer>
       <p></p>
