@@ -64,6 +64,7 @@ $(document).ready(function() {
         // here we will handle errors and validation messages
       })
       .error(function(e){
+        console.log(e);
         alert("Username or password incorrect");
       });
 

@@ -34,12 +34,14 @@ exports.findAll = (req, res) => {
     .then(users => {
       console.log(req.body.userName)
       users.forEach(function(value){
-        if (value.userName === req.body.userName && value.password === req.body.password) {
-          //console.log('User Found');
-          res.send(value);
+        if (value.userName === req.body.userName) {
+          if (value.password === req.body.password) {
+              //console.log('User Found');
+              res.send(value); 
+          }
         }
         else{
-          res.send(0);
+          //res.send(0);
         }
       });
     })
@@ -52,15 +54,16 @@ exports.findAll = (req, res) => {
 
 // Find a single login with a surveyId
 exports.findOne = (req, res) => {
-  console.log(req.params);
+  console.log(req.body.userName);
+  console.log(req.body.password);
 
-  Login.findById(req.params.userName)
+  Login.findById({"userName" : req.body.userName})
     .then(user => {
         console.log(user);
 
       if (!user) {
         return res.status(404).send({
-          message: "Login not found with id " + req.params.userName
+          message: "Login not found with id " + req.body.userName
         });
       }
       res.send(user);
@@ -68,11 +71,11 @@ exports.findOne = (req, res) => {
     .catch(err => {
       if (err.kind === "ObjectId") {
         return res.status(404).send({
-          message: "Login not found with id " + req.params.userName
+          message: "Login not found with id " + req.body.userName
         });
       }
       return res.status(500).send({
-        message: "Error retrieving login with id " + req.params.userName
+        message: "Error retrieving login with id " + req.body.userName
       });
     });
 };
